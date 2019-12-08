@@ -10,6 +10,10 @@ public class Vector2d {
         hash += this.y * 97;
         return hash;
     }
+    public Vector2d() {
+        this.x = 1;
+        this.y = 1;
+    }
     public Vector2d(int x, int y){
         this.x = x;
         this.y = y;
