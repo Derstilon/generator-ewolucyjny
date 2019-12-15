@@ -5,9 +5,9 @@ public class Vector2d {
     public final int y;
     @Override
     public int hashCode() {
-        int hash = 17;
-        hash += this.x * 47;
-        hash += this.y * 97;
+        int hash = 103;
+        hash += this.x * 107;
+        hash += this.y * 109;
         return hash;
     }
     public Vector2d() {

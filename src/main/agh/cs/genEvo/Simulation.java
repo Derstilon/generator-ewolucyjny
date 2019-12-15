@@ -17,10 +17,15 @@ public class Simulation {
         }
     }
     private static void GenerateSimulation(){
-        WorldMap ocean = new WorldMap(width, height, zoneSize, "Warm ocean");
-        ocean.addBiome(jungleWidth, jungleHeight, "█ Coral reef");
+        PlantLife plant = new PlantLife(plantEnergy);
+        WorldMap ocean = new WorldMap(width, height, zoneSize, WorldMapBiome.WARM_OCEAN, plant);
+        ocean.addBiome(jungleWidth, jungleHeight, WorldMapBiome.CORAL_REEF);
         System.out.println(ocean.toString());
-
+        int k = width*height - zoneSize*jungleHeight*jungleWidth;
+        for(int i = 0; i < k/2; i++){
+            ocean.growthManager.SimulateGrowth();
+            System.out.println(ocean.toString());
+        }
     }
 }
 /*  🌱█  */

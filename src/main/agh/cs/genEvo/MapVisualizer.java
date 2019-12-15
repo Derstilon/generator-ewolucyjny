@@ -70,9 +70,9 @@ public class MapVisualizer {
         if (object != null) {
             result = object.toString();
         }else{
-            String biome = this.map.biomeAt(currentPosition);
+            Object biome = this.map.biomeAt(currentPosition);
             if (biome != null)
-                result = "" + biome.toCharArray()[0];
+                result = "" + biome.toString();
         }
         return result;
     }

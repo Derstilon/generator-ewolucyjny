@@ -11,11 +11,14 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
         <option value="Interface" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1RvDz8Lwd7jgtECTUBxGtHgbuvj" />
   <component name="PropertiesComponent">
@@ -30,6 +33,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="agh.cs.genEvo" />
       <recent name="agh.cs.lab2" />
     </key>
   </component>
@@ -59,20 +63,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="World" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="agh.cs.genEvo.World" />
-      <module name="generatorEwolucyjny" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="agh.cs.genEvo.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MovementTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MapZoneTest.FinalGrowthTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="generatorEwolucyjny" />
       <extension name="coverage">
         <pattern>
@@ -81,29 +72,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="agh.cs.genEvo" />
-      <option name="MAIN_CLASS_NAME" value="agh.cs.genEvo.MovementTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MovementTest.move2Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="generatorEwolucyjny" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="agh.cs.genEvo.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="agh.cs.genEvo" />
-      <option name="MAIN_CLASS_NAME" value="agh.cs.genEvo.MovementTest" />
-      <option name="METHOD_NAME" value="move2Test" />
+      <option name="MAIN_CLASS_NAME" value="agh.cs.genEvo.MapZoneTest" />
+      <option name="METHOD_NAME" value="FinalGrowthTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="agh.cs.genEvo in generatorEwolucyjny" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MapZoneTest.GetSectionSizeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="generatorEwolucyjny" />
       <extension name="coverage">
         <pattern>
@@ -112,7 +88,41 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="agh.cs.genEvo" />
-      <option name="TEST_OBJECT" value="package" />
+      <option name="MAIN_CLASS_NAME" value="agh.cs.genEvo.MapZoneTest" />
+      <option name="METHOD_NAME" value="GetSectionSizeTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MapZoneTest.GetVectorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="generatorEwolucyjny" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="agh.cs.genEvo.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="agh.cs.genEvo" />
+      <option name="MAIN_CLASS_NAME" value="agh.cs.genEvo.MapZoneTest" />
+      <option name="METHOD_NAME" value="GetVectorTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MapZoneTest.SimulateGrowthTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="generatorEwolucyjny" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="agh.cs.genEvo.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="agh.cs.genEvo" />
+      <option name="MAIN_CLASS_NAME" value="agh.cs.genEvo.MapZoneTest" />
+      <option name="METHOD_NAME" value="SimulateGrowthTest" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -120,10 +130,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Simulation" />
-        <item itemvalue="Application.World" />
-        <item itemvalue="JUnit.agh.cs.genEvo in generatorEwolucyjny" />
-        <item itemvalue="JUnit.MovementTest.move2Test" />
-        <item itemvalue="JUnit.MovementTest" />
+        <item itemvalue="JUnit.MapZoneTest.FinalGrowthTest" />
+        <item itemvalue="JUnit.MapZoneTest.GetVectorTest" />
+        <item itemvalue="JUnit.MapZoneTest.SimulateGrowthTest" />
+        <item itemvalue="JUnit.MapZoneTest.GetSectionSizeTest" />
       </list>
     </recent_temporary>
   </component>
@@ -139,5 +149,18 @@
       <updated>1570538936162</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

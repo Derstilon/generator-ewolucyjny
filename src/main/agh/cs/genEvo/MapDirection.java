@@ -16,10 +16,10 @@ public enum MapDirection {
         return null;
     }
     public MapDirection next(){
-        return MapDirection.values()[(this.ordinal() +1)%4];
+        return MapDirection.values()[(this.ordinal() +1)%8];
     }
     public MapDirection previous(){
-        return MapDirection.values()[(this.ordinal() +3)%4];
+        return MapDirection.values()[(this.ordinal() +3)%8];
     }
     public Vector2d toUnitVector(){
         switch(this) {
