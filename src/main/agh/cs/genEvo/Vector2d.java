@@ -1,15 +1,11 @@
 package agh.cs.genEvo;
 
+import java.util.Objects;
+
 public class Vector2d {
     public final int x;
     public final int y;
-    @Override
-    public int hashCode() {
-        int hash = 103;
-        hash += this.x * 107;
-        hash += this.y * 109;
-        return hash;
-    }
+
     public Vector2d() {
         this.x = 1;
         this.y = 1;
@@ -61,5 +57,10 @@ public class Vector2d {
         return new Vector2d(this.x - v.x, this.y - v.y);
     }public Vector2d opposite(){
         return new Vector2d(-this.x, -this.y);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y);
     }
 }

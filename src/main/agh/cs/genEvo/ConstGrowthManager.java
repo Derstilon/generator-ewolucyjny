@@ -1,11 +1,13 @@
 package agh.cs.genEvo;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class ConstGrowthManager implements GrowthInterface{
-    GrowthObserver observer;
-    ZonesManager manager;
+    private GrowthObserver observer;
+    private ZonesManager manager;
+    //public Hashtable<Vector2d, PlantLife> plantTable = new Hashtable<>();
     ConstGrowthManager(GrowthObserver worldMap, ZonesManager manager){
         this.observer = worldMap;
         this.manager = manager;
@@ -25,7 +27,7 @@ public class ConstGrowthManager implements GrowthInterface{
     }
 
     @Override
-    public void SimulateGrowth() {
+    public void simulateGrowth() {
         //System.out.println("SAME SAME");
         for (WorldMapBiome biome : WorldMapBiome.values()){
             Vector2d position = getRandomPosition(biome);
@@ -53,10 +55,9 @@ public class ConstGrowthManager implements GrowthInterface{
             }
         }
     }
-
     //NotRandomVersion//
     @Override
-    public void SimulateGrowth(int index) {
+    public void simulateGrowth(int index) {
         //System.out.println("SAME SAME");
         for (WorldMapBiome biome : WorldMapBiome.values()){
             Vector2d position = getRandomPosition(biome, index);
@@ -84,6 +85,11 @@ public class ConstGrowthManager implements GrowthInterface{
                 */
             }
         }
+    }
+
+    @Override
+    public void plantEatenOnPosition(Vector2d position) {
+        plantTable.remove(position);
     }
 
     @Override

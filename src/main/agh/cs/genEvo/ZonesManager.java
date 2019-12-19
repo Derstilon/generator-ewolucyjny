@@ -80,7 +80,7 @@ public class ZonesManager {
     }
 
     public Vector2d getVector(int zoneIndex, int positionIndex){
-        return zones[zoneIndex%dimensions[0]][zoneIndex/dimensions[1]].getVector(positionIndex);
+        return zones[zoneIndex%dimensions[0]][zoneIndex/dimensions[0]].getVector(positionIndex);
     }
 
     public Vector2d getVector(int zoneIndex, int positionIndex, WorldMapBiome thisBiome){

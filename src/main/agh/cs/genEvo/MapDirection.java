@@ -1,25 +1,19 @@
 package agh.cs.genEvo;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public enum MapDirection {
     NORTH, NORTHEAST, EAST, SOUTHEAST, SOUTH, SOUTHWEST, WEST, NORTHWEST;
-    public String toString(){
-        switch(this) {
-            case NORTH : return "Północ";
-            case EAST: return "Wschód";
-            case SOUTH : return "Południe";
-            case WEST: return "Zachód";
-            case NORTHEAST: return "Północny wschód";
-            case NORTHWEST: return "Północny zachód";
-            case SOUTHEAST: return "Południowy wschód";
-            case SOUTHWEST: return "Południowy zachód";
-        }
-        return null;
-    }
+    private final String[] arrows = {"🡡", "🡥", "🡢", "🡦", "🡣", "🡧", "🡠", "🡤"};
+    public MapDirection rotate(MapDirection rotateValue){ return MapDirection.values()[(this.ordinal() + rotateValue.ordinal())%8];}
     public MapDirection next(){
         return MapDirection.values()[(this.ordinal() +1)%8];
     }
     public MapDirection previous(){
         return MapDirection.values()[(this.ordinal() +3)%8];
+    }
+    public MapDirection random(){
+        return MapDirection.values()[new Random().nextInt(MapDirection.values().length)];
     }
     public Vector2d toUnitVector(){
         switch(this) {
@@ -33,5 +27,9 @@ public enum MapDirection {
             case SOUTHWEST : return new Vector2d(-1,-1);
             default : return new Vector2d(0,0);
         }
+    }
+    public String toString(){
+        //System.out.println(this.ordinal());
+        return arrows[this.ordinal()];
     }
 }

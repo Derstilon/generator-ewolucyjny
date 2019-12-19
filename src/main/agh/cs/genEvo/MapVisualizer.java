@@ -1,5 +1,6 @@
 package agh.cs.genEvo;
 
+
 public class MapVisualizer {
 
     private static final String EMPTY_CELL = " ";
@@ -66,13 +67,21 @@ public class MapVisualizer {
 
     private String drawObject(Vector2d currentPosition) {
         String result = EMPTY_CELL;
-        Object object = this.map.objectAt(currentPosition);
-        if (object != null) {
-            result = object.toString();
+        Object object = this.map.animalAt(currentPosition);
+        //if (object != null)
+        //    System.out.println(object.toString() + "  " + object.hashCode());
+        if (object instanceof GenderlessAnimal) {
+            result = ((GenderlessAnimal) object).toString();
         }else{
-            Object biome = this.map.biomeAt(currentPosition);
-            if (biome != null)
-                result = "" + biome.toString();
+            //System.out.println("INU INU");
+            object = this.map.plantAt(currentPosition);
+            if (object != null) {
+                result = object.toString();
+            }else{
+                Object biome = this.map.biomeAt(currentPosition);
+                if (biome != null)
+                    result = "" + biome.toString();
+            }
         }
         return result;
     }

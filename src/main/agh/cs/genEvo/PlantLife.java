@@ -7,7 +7,7 @@ public class PlantLife implements PlantInterface {
         energyValue = value;
     }
 
-    public PlantLife(PlantInterface plant) { energyValue = plant.getEnergyValue(); };
+    public PlantLife(PlantInterface template) { energyValue = template.getEnergyValue(); };
 
     @Override
     public boolean CanBeEaten() {

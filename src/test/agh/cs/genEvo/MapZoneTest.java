@@ -10,7 +10,8 @@ public class MapZoneTest {
     Vector2d origin = new Vector2d(0,0);
     Vector2d bound = new Vector2d(5,5);
     PlantLife plant = new PlantLife(0);
-    WorldMap ocean = new WorldMap(6, 6, 2, WorldMapBiome.WARM_OCEAN, plant);
+    GenderlessAnimal animal = new GenderlessAnimal(0,0, 0, new Vector2d(0,0),0);
+    WorldMap ocean = new WorldMap(6, 6, 2, WorldMapBiome.WARM_OCEAN, 1, plant, animal);
     ZonesManager manager = new ZonesManager(2,WorldMapBiome.WARM_OCEAN,origin,bound);
     @Test
     public void WorldMapZoneTest(){
@@ -30,7 +31,7 @@ public class MapZoneTest {
 
     @Test
     public void GetVectorTest() {
-        ocean = new WorldMap(80, 80, 2, WorldMapBiome.WARM_OCEAN, plant);
+        ocean = new WorldMap(80, 80, 2, WorldMapBiome.WARM_OCEAN, 1, plant, animal);
         System.out.println(manager.getVector(4, 3, WorldMapBiome.WARM_OCEAN).toString());
         ocean.addBiome(20, 20, WorldMapBiome.CORAL_REEF);
         System.out.println(manager.getVector(4, 3, WorldMapBiome.WARM_OCEAN).toString());
@@ -46,21 +47,21 @@ public class MapZoneTest {
     public void SimulateGrowthTest(){
         ConstGrowthManager growthManager = new ConstGrowthManager(ocean, manager);
         for(int i = 0; i < 3; i++){
-            growthManager.SimulateGrowth();
+            growthManager.simulateGrowth();
         }
         manager.setNewBiome(1,1,WorldMapBiome.CORAL_REEF);
         for(int i = 0; i < 3; i++){
-            growthManager.SimulateGrowth();
+            growthManager.simulateGrowth();
         }
     }
 
     @Test
     public void FinalGrowthTest() {
-        ocean = new WorldMap(3, 4, 1, WorldMapBiome.WARM_OCEAN, plant);
+        ocean = new WorldMap(3, 4, 1, WorldMapBiome.WARM_OCEAN, 1, plant, animal);
         ocean.addBiome(1,2,WorldMapBiome.CORAL_REEF);
         System.out.println(ocean.toString());
         for(int i = 0; i <56; i++){
-            ocean.growthManager.SimulateGrowth();
+            ocean.growthManager.simulateGrowth();
             System.out.println(ocean.toString());
         }
     }
