@@ -6,11 +6,14 @@ import java.util.PriorityQueue;
 
 public class AnimalPack implements AnimalGroupInterface{
     PriorityQueue<AnimalInterface> animalGroup;
-    Integer packBiggestEnergy;
+
+    //Constructor//
     AnimalPack(){
         AnimalComparator comparator = new AnimalComparator();
         animalGroup = new PriorityQueue<>(comparator);
     }
+    //***********//
+
     @Override
     public Integer size() {
         return animalGroup.size();

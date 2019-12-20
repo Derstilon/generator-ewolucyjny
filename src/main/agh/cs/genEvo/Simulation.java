@@ -29,7 +29,7 @@ public class Simulation {
         animal = new GenderlessAnimal(startEnergy,startEnergy, moveEnergy, new Vector2d(0,0), 0);
         ocean = new WorldMap(width, height, zoneSize, WorldMapBiome.WARM_OCEAN, plantLifeSpread, plant, animal);
         ocean.addBiome(jungleWidth, jungleHeight, WorldMapBiome.CORAL_REEF);
-        ocean.populationManager.GeneratePopulation(startAnimals);
+        ocean.populationManager.generatePopulation(startAnimals);
         //System.out.println(ocean.toString());
     }
 }

@@ -5,16 +5,13 @@ import java.util.concurrent.ThreadLocalRandom;
 public enum MapDirection {
     NORTH, NORTHEAST, EAST, SOUTHEAST, SOUTH, SOUTHWEST, WEST, NORTHWEST;
     private final String[] arrows = {"🡡", "🡥", "🡢", "🡦", "🡣", "🡧", "🡠", "🡤"};
+
     public MapDirection rotate(MapDirection rotateValue){ return MapDirection.values()[(this.ordinal() + rotateValue.ordinal())%8];}
-    public MapDirection next(){
-        return MapDirection.values()[(this.ordinal() +1)%MapDirection.values().length];
-    }
-    public MapDirection previous(){
-        return MapDirection.values()[(this.ordinal() +3)%MapDirection.values().length];
-    }
+
     public MapDirection random(){
         return MapDirection.values()[new Random().nextInt(MapDirection.values().length)];
     }
+
     public Vector2d toUnitVector(){
         switch(this) {
             case NORTH : return new Vector2d(0,1);
@@ -28,6 +25,7 @@ public enum MapDirection {
             default : return new Vector2d(0,0);
         }
     }
+
     public String toString(){
         //System.out.println(this.ordinal());
         return arrows[this.ordinal()];

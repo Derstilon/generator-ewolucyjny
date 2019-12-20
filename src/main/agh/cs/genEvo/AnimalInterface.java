@@ -6,18 +6,24 @@ public interface AnimalInterface{
     boolean canBeFirstPartner();
     boolean canBeSecondPartner();
     boolean isHealthy();
-    int getEnergy();
+    boolean move();
+    boolean move(MapDirection rotation);
     boolean age();
-    Genotype getGenes();
-    Integer getAgeOfBirth();
-    Integer getAgeOfDeath();
-    Integer getStartEnergy();
-    Integer getMoveEnergy();
-    Vector2d getPosition();
+
+    void consumeEnergy(Integer energyCost);
     void setPosition(Vector2d newposition);
     void addEnergy(int energy);
     void setPopulationObserver(PopulationObserver worldMap);
     void ChildCreated(AnimalInterface child);
-    boolean move();
-    boolean move(MapDirection rotation);
+
+    int getEnergy();
+
+    Integer getAgeOfBirth();
+    Integer getAgeOfDeath();
+    Integer getStartEnergy();
+    Integer getMoveEnergy();
+
+    Vector2d getPosition();
+
+    Genotype getGenes();
 }

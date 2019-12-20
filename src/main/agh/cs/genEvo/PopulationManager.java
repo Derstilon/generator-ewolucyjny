@@ -11,6 +11,8 @@ public class PopulationManager {
     public ArrayList<AnimalInterface> population;
     public Hashtable<Vector2d, AnimalPack> animalTable;
     public Hashtable<Genotype, PriorityQueue<AnimalInterface>> familyTable;
+
+    //Constructors//
     PopulationManager(PopulationObserver worldMap, ZonesManager manager){
         this.observer = worldMap;
         this.manager = manager;
@@ -18,6 +20,8 @@ public class PopulationManager {
         this.animalTable = new Hashtable<>();
         this.familyTable = new Hashtable<>();
     }
+    //************//
+
     public Vector2d getRandomPosition(){
         //System.out.println("SAME SAME");
         int[] dimensions = manager.getDimensions();
@@ -29,7 +33,8 @@ public class PopulationManager {
         //System.out.println(zoneIndex +" " + positionIndex + " " +position.toString() + " " + sectionSize);
         return position;
     }
-    public void GeneratePopulation(Integer count){
+
+    public void generatePopulation(Integer count){
         int i = 0;
         while (i<count){
             Vector2d position = getRandomPosition();
@@ -46,6 +51,7 @@ public class PopulationManager {
                 System.out.println("I'm dead");
         });
     }
+
     public void simulateExtinction(){
         population.removeIf(e -> {
             if(e.isAlive()){
@@ -57,6 +63,7 @@ public class PopulationManager {
             }
         });
     }
+
     public void feedAnimals(int energy, AnimalPack pack){
         //AnimalPack pack = animalTable.get(position);
         ArrayList<AnimalInterface> feedingCandidates = pack.peekDominant();
@@ -70,6 +77,7 @@ public class PopulationManager {
         }
         observer.animalsFeedOnPosition(pack.peek().getPosition());
     }
+
     public void reproduceAnimals(AnimalPack matingPack, AnimalInterface alfa){
         ArrayList<AnimalInterface> partners = new ArrayList<>();
         while(alfa.isHealthy()){
@@ -85,6 +93,16 @@ public class PopulationManager {
         matingPack.addAll(partners);
     }
 
+    private void findGatherings(ArrayList<AnimalPack> gatheredPacks, Integer lowerLimit){
+        animalTable.forEach(
+                (k, v) -> {
+                    if(v != null && v.size()>=lowerLimit) {
+                        gatheredPacks.add(v);
+                    }
+                });
+    }
+    
+    //Simulators//
     public void simulateFeast(){
         ArrayList<AnimalPack> feedingPacks = new ArrayList<>();
         findGatherings(feedingPacks, 1);
@@ -110,13 +128,6 @@ public class PopulationManager {
             }
         }
     }
+    //**********//
 
-    private void findGatherings(ArrayList<AnimalPack> gatheredPacks, Integer lowerLimit){
-        animalTable.forEach(
-                (k, v) -> {
-                    if(v != null && v.size()>=lowerLimit) {
-                        gatheredPacks.add(v);
-                    }
-                });
-    }
 }

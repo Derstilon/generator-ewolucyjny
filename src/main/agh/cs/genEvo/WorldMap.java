@@ -12,10 +12,7 @@ public class WorldMap implements WorldInterface, GrowthObserver, PopulationObser
     private Integer worldMapAge;
     public PopulationManager populationManager;
     public GrowthInterface growthManager;
-    //private Hashtable<Integer, PlantLife> plantTable = new Hashtable<>();
-    //private Hashtable<Integer, PriorityQueue<AnimalInterface>> animalTable = new Hashtable<>();
     private ZonesManager zonesManager;
-    //private Vector<>;
 
     //Constructors//
     public WorldMap(int width, int height, int size, WorldMapBiome biome, Integer spread, PlantInterface plant, AnimalInterface animal){
@@ -34,8 +31,7 @@ public class WorldMap implements WorldInterface, GrowthObserver, PopulationObser
     }
     //************//
 
-    //SIMULATION//
-                                                                                                    /*removeIf*/
+    //SIMULATION///*removeIf*/
     @Override
     public void simulateWorld(Integer k) {
         for(int i = 0; i < k; i++){
@@ -55,7 +51,6 @@ public class WorldMap implements WorldInterface, GrowthObserver, PopulationObser
         }
     }
     //______________//
-
 
     @Override
     public void increaseAge() {

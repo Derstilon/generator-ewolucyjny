@@ -35,7 +35,8 @@ public class GenderlessAnimal implements AnimalInterface{
     }
     //____________//
 
-    private void consumeEnergy(Integer energyCost) {
+    @Override
+    public void consumeEnergy(Integer energyCost) {
         energyValue-=energyCost;
         if(isAlive())
             return;

@@ -7,11 +7,13 @@ import java.util.concurrent.ThreadLocalRandom;
 public class ConstGrowthManager implements GrowthInterface{
     private GrowthObserver observer;
     private ZonesManager manager;
-    //public Hashtable<Vector2d, PlantLife> plantTable = new Hashtable<>();
+
+    //Constructor//
     ConstGrowthManager(GrowthObserver worldMap, ZonesManager manager){
         this.observer = worldMap;
         this.manager = manager;
     }
+    //***********//
 
     public Vector2d getRandomPosition(WorldMapBiome inBiome){
         //System.out.println("SAME SAME");
@@ -26,6 +28,7 @@ public class ConstGrowthManager implements GrowthInterface{
         return position;
     }
 
+    //Simulator//
     @Override
     public void simulateGrowth() {
         //System.out.println("SAME SAME");
@@ -55,7 +58,9 @@ public class ConstGrowthManager implements GrowthInterface{
             }
         }
     }
-    //NotRandomVersion//
+    //*********//
+
+    //ControlledRandomGenerators//
     @Override
     public void simulateGrowth(int index) {
         //System.out.println("SAME SAME");
@@ -86,12 +91,10 @@ public class ConstGrowthManager implements GrowthInterface{
             }
         }
     }
-
     @Override
     public void plantEatenOnPosition(Vector2d position) {
         plantTable.remove(position);
     }
-
     @Override
     public Vector2d getRandomPosition(WorldMapBiome inBiome, int index){
         //System.out.println("SAME SAME");
@@ -105,4 +108,5 @@ public class ConstGrowthManager implements GrowthInterface{
         //System.out.println(zoneIndex +" " + positionIndex + " " +position.toString() + " " + sectionSize);
         return position;
     }
+    //**************************//
 }

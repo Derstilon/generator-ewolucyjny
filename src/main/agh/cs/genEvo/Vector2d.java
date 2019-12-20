@@ -18,6 +18,7 @@ public class Vector2d {
         this.x = v.x;
         this.y = v.y;
     }
+
     public String toString(){
         return "("+this.x+","+this.y+")";
     }
@@ -44,6 +45,7 @@ public class Vector2d {
         }
         return  true;
     }
+
     public Vector2d upperRight(Vector2d v){
         return new Vector2d(Math.max(this.x, v.x), Math.max(this.y, v.y));
     }
