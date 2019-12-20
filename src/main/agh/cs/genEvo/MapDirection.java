@@ -7,10 +7,10 @@ public enum MapDirection {
     private final String[] arrows = {"🡡", "🡥", "🡢", "🡦", "🡣", "🡧", "🡠", "🡤"};
     public MapDirection rotate(MapDirection rotateValue){ return MapDirection.values()[(this.ordinal() + rotateValue.ordinal())%8];}
     public MapDirection next(){
-        return MapDirection.values()[(this.ordinal() +1)%8];
+        return MapDirection.values()[(this.ordinal() +1)%MapDirection.values().length];
     }
     public MapDirection previous(){
-        return MapDirection.values()[(this.ordinal() +3)%8];
+        return MapDirection.values()[(this.ordinal() +3)%MapDirection.values().length];
     }
     public MapDirection random(){
         return MapDirection.values()[new Random().nextInt(MapDirection.values().length)];

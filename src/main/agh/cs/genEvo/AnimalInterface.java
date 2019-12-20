@@ -19,4 +19,5 @@ public interface AnimalInterface{
     void setPopulationObserver(PopulationObserver worldMap);
     void ChildCreated(AnimalInterface child);
     boolean move();
+    boolean move(MapDirection rotation);
 }

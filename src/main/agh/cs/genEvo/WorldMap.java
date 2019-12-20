@@ -50,6 +50,7 @@ public class WorldMap implements WorldInterface, GrowthObserver, PopulationObser
             //    System.out.println(animal.toString() + animal.getEnergy());
             //}
             System.out.println(this.toString());
+            System.out.println(this.populationManager.population.size());
             this.increaseAge();
         }
     }
@@ -95,6 +96,7 @@ public class WorldMap implements WorldInterface, GrowthObserver, PopulationObser
     @Override
     public AnimalPack animalsAt(Vector2d position) {
         AnimalPack pack = populationManager.animalTable.get(position);
+        //System.out.println("SAME SAME:" + position.toString() + ":" + pack);
         if(pack != null && pack.size() == 0)
             return null;
         return pack;
@@ -136,23 +138,26 @@ public class WorldMap implements WorldInterface, GrowthObserver, PopulationObser
     }
 
     @Override
-    public boolean putAnimal(Vector2d position, AnimalInterface animal) {
+    public boolean putAnimal(AnimalInterface animal) {
         //System.out.println("position initial: "+ position);
+        Vector2d position = animal.getPosition();
         AnimalPack pack = animalsAt(position);
         if(pack==null) {
             pack = new AnimalPack();
+            pack.add(animal);
             populationManager.animalTable.put(position, pack);
-            //System.out.println(pack.size() + "___" + populationManager.population.size());
+        }else {
+            pack.add(animal);
         }
-        pack.add(animal);
+        //System.out.println(pack.size() + "___" + populationManager.population.size());
         return true;
     }
 
     @Override
     public Vector2d bendPositions(Vector2d newposition) {
-        int x = newposition.x%bound.x;
-        int y = newposition.y%bound.y;
-        return new Vector2d(x,y).add(origin);
+        int x = !newposition.follows(origin) && newposition.x != origin.x ? bound.x : !newposition.precedes(bound) && newposition.x != bound.x ? origin.x : newposition.x ;
+        int y = !newposition.follows(origin) && newposition.y != origin.y  ? bound.y : !newposition.precedes(bound) && newposition.y != bound.y ? origin.y : newposition.y;
+        return new Vector2d(x,y);
     }
 
     //GrowthObserver//
@@ -181,10 +186,10 @@ public class WorldMap implements WorldInterface, GrowthObserver, PopulationObser
     }
 
     @Override
-    public boolean childGenerated(AnimalInterface child, Vector2d position) {
-        if(putAnimal(position,child)){
-            this.populationManager.population.add(child);
-            child.setPopulationObserver(this);
+    public boolean childGenerated(AnimalInterface child) {
+        this.populationManager.population.add(child);
+        child.setPopulationObserver(this);
+        if(putAnimal(child)){
             return true;
         }
         return false;
@@ -196,22 +201,23 @@ public class WorldMap implements WorldInterface, GrowthObserver, PopulationObser
         if(current != null)
             return false;
         AnimalInterface child = new GenderlessAnimal(defaultAnimal, position);
-        return childGenerated(child, position);
+        return childGenerated(child);
     }
 
     @Override
-    public boolean animalMoved(Vector2d oldposition, Vector2d newposition, AnimalInterface animal) {
-        //System.out.println(populationManager.population.size() + "WTF");
+    public boolean animalMoved(Vector2d oldposition, AnimalInterface animal) {
         AnimalPack pack = animalsAt(oldposition);
-        Vector2d position = bendPositions(newposition);
-        //System.out.println(oldposition+" "+position+" "+newposition);
+        //System.out.println(pack.size());
+        Vector2d position = bendPositions(animal.getPosition());
+        //System.out.println(oldposition.toString()+" "+position.toString()+" "+animal.getPosition().toString());
         if(pack != null) {
             if (pack.contains(animal)) {
                 pack.remove(animal);
                 //System.out.println(pack.size());
                 animal.setPosition(position);
-                if (putAnimal(position, animal))
+                if (putAnimal(animal)){
                     return true;
+                }
             }
         }
         return false;

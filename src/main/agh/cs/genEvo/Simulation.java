@@ -9,7 +9,7 @@ public class Simulation {
     static final int startEnergy = 256;
     static final int moveEnergy = 8;
     static final int plantEnergy = 64;
-    static final int startAnimals = 40;//20;
+    static final int startAnimals = 20;
     static final int plantLifeSpread = 8;
     static PlantLife plant;
     static AnimalInterface animal;

@@ -37,6 +37,7 @@ public class PopulationManager {
                 i++;
         }
     }
+
     public void simulateMovement(){
         population.forEach(e->{
             //System.out.println(e.getPosition() + " " + animalTable.get(e.getPosition()).peek().getPosition());
@@ -70,7 +71,6 @@ public class PopulationManager {
         observer.animalsFeedOnPosition(pack.peek().getPosition());
     }
     public void reproduceAnimals(AnimalPack matingPack, AnimalInterface alfa){
-        int i = 0;
         ArrayList<AnimalInterface> partners = new ArrayList<>();
         while(alfa.isHealthy()){
             AnimalInterface partner = matingPack.poolPartner();
@@ -81,6 +81,7 @@ public class PopulationManager {
                 break;
                 //System.out.println("SAME DZIECI");
         }
+        matingPack = animalTable.get(alfa.getPosition());
         matingPack.addAll(partners);
     }
 
@@ -104,7 +105,8 @@ public class PopulationManager {
                 if (pack.peek().isHealthy()) {
                     reproduceAnimals(pack, alfa);
                 }
-                pack.add(alfa);
+                AnimalPack childPack = animalTable.get(alfa.getPosition());
+                childPack.add(alfa);
             }
         }
     }

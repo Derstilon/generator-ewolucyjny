@@ -124,7 +124,7 @@ public class GenderlessAnimal implements AnimalInterface{
             Integer myEnergy = energyValue/4;
             Integer mateEnergy = mate.getEnergy()/4;
             AnimalInterface child = new GenderlessAnimal(myEnergy+mateEnergy,this.startEnergy, this.moveEnergy,this.position,this.ageOfBirth+this.age,childGenom);
-            if(observer != null && observer.childGenerated(child, this.position)){
+            if(observer != null && observer.childGenerated(child)){
                 this.consumeEnergy(myEnergy);
                 mate.ChildCreated(child);
             }
@@ -153,12 +153,18 @@ public class GenderlessAnimal implements AnimalInterface{
 
     @Override
     public boolean move() {
+        MapDirection direction = rotation.rotate(genes.geneticRotation());
+        return move(direction);
+    }
+
+    @Override
+    public boolean move(MapDirection direction) {
         if(isAlive()) {
             consumeEnergy(moveEnergy);
-            rotation = rotation.rotate(genes.geneticRotation());
+            rotation = direction;//rotation.rotate(genes.geneticRotation());
             Vector2d oldPosition = new Vector2d(this.position);
-            Vector2d newPosition = new Vector2d(this.position.add(rotation.toUnitVector()));
-            return (observer.animalMoved(oldPosition, newPosition, this));
+            this.position = new Vector2d(this.position.add(rotation.toUnitVector()));
+            return (observer.animalMoved(oldPosition, this));
         }
         return false;
     }

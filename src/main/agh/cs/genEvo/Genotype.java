@@ -2,6 +2,7 @@ package agh.cs.genEvo;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -14,16 +15,30 @@ public class Genotype {
     Genotype(ArrayList<MapDirection> secondaryGenes){
         geneList.addAll(secondaryGenes);
     }
+
     Genotype(){
+        geneList.addAll(randomizeSecondaryGenes());
+    }
+    private ArrayList<MapDirection> randomizeSecondaryGenes(){
+        ArrayList<MapDirection> secondaryGenes = new ArrayList<>();
         for(int i = geneList.size(); i < 32; i++){
-            geneList.add(MapDirection.values()[ThreadLocalRandom.current().nextInt(0, 7)]);
+            secondaryGenes.add(MapDirection.values()[ThreadLocalRandom.current().nextInt(0, 8)]);
+            Collections.sort(secondaryGenes);
         }
+        return secondaryGenes;
     }
     ArrayList<MapDirection> getSecondaryGenes(){
         return new ArrayList<>(geneList.subList(8,geneList.size()));
     }
     Genotype RecombinateWith(Genotype mateGenes){
-        return new Genotype();
+        Integer cut1 = ThreadLocalRandom.current().nextInt(6, 10);
+        Integer cut2 = ThreadLocalRandom.current().nextInt(6, 10);
+        ArrayList<MapDirection> childSecondaryGenes = new ArrayList<>();
+        childSecondaryGenes.addAll(mateGenes.getSecondaryGenes().subList(0,cut1));
+        childSecondaryGenes.addAll(this.getSecondaryGenes().subList(cut1,cut1+cut2));
+        childSecondaryGenes.addAll(mateGenes.getSecondaryGenes().subList(cut1+cut2,mateGenes.getSecondaryGenes().size()));
+        Collections.sort(childSecondaryGenes);
+        return new Genotype(childSecondaryGenes);
     }
     MapDirection geneticRotation(){
         return geneList.get(ThreadLocalRandom.current().nextInt(0, geneList.size()));
