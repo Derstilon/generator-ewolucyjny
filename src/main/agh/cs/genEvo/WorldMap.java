@@ -1,6 +1,17 @@
 package agh.cs.genEvo;
 
-import java.util.*;
+import agh.cs.genEvo.managers.ConstGrowthManager;
+import agh.cs.genEvo.managers.GrowthInterface;
+import agh.cs.genEvo.managers.PopulationManager;
+import agh.cs.genEvo.managers.ZonesManager;
+import agh.cs.genEvo.mapElements.*;
+import agh.cs.genEvo.mapElements.animalElements.AnimalInterface;
+import agh.cs.genEvo.mapElements.animalElements.AnimalPack;
+import agh.cs.genEvo.mapElements.animalElements.GenderlessAnimal;
+import agh.cs.genEvo.observers.GrowthObserver;
+import agh.cs.genEvo.observers.PopulationObserver;
+import agh.cs.genEvo.utils.MapVisualizer;
+import agh.cs.genEvo.utils.Vector2d;
 
 public class WorldMap implements WorldInterface, GrowthObserver, PopulationObserver {
     private final Vector2d origin;

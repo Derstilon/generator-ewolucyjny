@@ -1,4 +1,10 @@
-package agh.cs.genEvo;
+package agh.cs.genEvo.managers;
+
+import agh.cs.genEvo.mapElements.animalElements.AnimalInterface;
+import agh.cs.genEvo.mapElements.animalElements.AnimalPack;
+import agh.cs.genEvo.mapElements.animalElements.Genotype;
+import agh.cs.genEvo.observers.PopulationObserver;
+import agh.cs.genEvo.utils.Vector2d;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -13,7 +19,7 @@ public class PopulationManager {
     public Hashtable<Genotype, PriorityQueue<AnimalInterface>> familyTable;
 
     //Constructors//
-    PopulationManager(PopulationObserver worldMap, ZonesManager manager){
+    public PopulationManager(PopulationObserver worldMap, ZonesManager manager){
         this.observer = worldMap;
         this.manager = manager;
         this.population = new ArrayList<>();

@@ -1,4 +1,4 @@
-package agh.cs.genEvo;
+package agh.cs.genEvo.mapElements;
 
 public class MultistagePlantLife implements PlantInterface {
     private int energyValue;

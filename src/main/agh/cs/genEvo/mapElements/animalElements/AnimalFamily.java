@@ -1,4 +1,4 @@
-package agh.cs.genEvo;
+package agh.cs.genEvo.mapElements.animalElements;
 
 import java.util.ArrayList;
 import java.util.Collection;

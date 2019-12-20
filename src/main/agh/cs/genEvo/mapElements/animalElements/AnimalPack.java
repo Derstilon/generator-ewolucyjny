@@ -1,4 +1,6 @@
-package agh.cs.genEvo;
+package agh.cs.genEvo.mapElements.animalElements;
+
+import agh.cs.genEvo.comparators.AnimalComparator;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -8,7 +10,7 @@ public class AnimalPack implements AnimalGroupInterface{
     PriorityQueue<AnimalInterface> animalGroup;
 
     //Constructor//
-    AnimalPack(){
+    public AnimalPack(){
         AnimalComparator comparator = new AnimalComparator();
         animalGroup = new PriorityQueue<>(comparator);
     }

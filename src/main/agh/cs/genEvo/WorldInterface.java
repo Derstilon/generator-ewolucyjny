@@ -1,5 +1,11 @@
 package agh.cs.genEvo;
 
+import agh.cs.genEvo.mapElements.animalElements.AnimalInterface;
+import agh.cs.genEvo.mapElements.animalElements.AnimalPack;
+import agh.cs.genEvo.mapElements.PlantInterface;
+import agh.cs.genEvo.mapElements.WorldMapBiome;
+import agh.cs.genEvo.utils.Vector2d;
+
 public interface WorldInterface {
     PlantInterface plantAt(Vector2d position);
     AnimalInterface animalAt(Vector2d position);

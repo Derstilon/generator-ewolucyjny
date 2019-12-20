@@ -1,4 +1,6 @@
-package agh.cs.genEvo;
+package agh.cs.genEvo.mapElements;
+
+import agh.cs.genEvo.utils.Vector2d;
 
 public class WorldMapZone {
     private final Vector2d origin;
@@ -21,19 +23,19 @@ public class WorldMapZone {
         return "[" + origin.toString() + "," + bound.toString() + ",'" + biome.toString() + "']";
     }
 
-    void setBiome(WorldMapBiome zoneBiome){
+    public void setBiome(WorldMapBiome zoneBiome){
         biome = zoneBiome;
     }
-    WorldMapBiome getBiome(){
+    public WorldMapBiome getBiome(){
         return biome;
     }
     boolean isFilled(){
         return density == size;
     }
-    Vector2d getVector(int index){
+    public Vector2d getVector(int index){
         return origin.add(new Vector2d(index%size, index/size));
     }
-    Vector2d nextPosition(Vector2d position){
+    public Vector2d nextPosition(Vector2d position){
         Vector2d tmp = position.subtract(origin);
         Vector2d nextPosition = getVector(tmp.y*size+tmp.x +1);
         //System.out.println("Suggested vector: " + nextPosition.toString());

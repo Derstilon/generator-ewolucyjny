@@ -1,4 +1,6 @@
-package agh.cs.genEvo;
+package agh.cs.genEvo.comparators;
+
+import agh.cs.genEvo.mapElements.animalElements.AnimalInterface;
 
 import java.util.Comparator;
 

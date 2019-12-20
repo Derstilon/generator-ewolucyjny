@@ -1,6 +1,16 @@
 package agh.cs.genEvo;
 
+import agh.cs.genEvo.mapElements.animalElements.AnimalInterface;
+import agh.cs.genEvo.mapElements.animalElements.GenderlessAnimal;
+import agh.cs.genEvo.mapElements.PlantLife;
+import agh.cs.genEvo.mapElements.WorldMapBiome;
+import agh.cs.genEvo.src.ConfigurationPanel;
+import agh.cs.genEvo.src.MainWindow;
+import agh.cs.genEvo.utils.Vector2d;
+
 public class Simulation {
+    static MainWindow main;
+    static ConfigurationPanel conf;
     static final int width =  90;
     static final int height = 30;
     static final int zoneSize = 5;
@@ -15,14 +25,16 @@ public class Simulation {
     static AnimalInterface animal;
     static WorldMap ocean;
     public static void main(String[] args) {
-        int k = width*height - zoneSize*jungleHeight*jungleWidth;
+        main = new MainWindow("Generator Ewolucyjny");
+        conf = new ConfigurationPanel("Generator Ewolucyjny", main);
+        /*int k = width*height - zoneSize*jungleHeight*jungleWidth;
         k=10000;
         try {
             GenerateSimulation();
         } catch(IllegalArgumentException ex) {
             System.out.println(ex);
         }
-        ocean.simulateWorld(k);
+        ocean.simulateWorld(k);*/
     }
     private static void GenerateSimulation(){
         plant = new PlantLife(plantEnergy);

@@ -1,6 +1,5 @@
-package agh.cs.genEvo;
+package agh.cs.genEvo.utils;
 import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
 
 public enum MapDirection {
     NORTH, NORTHEAST, EAST, SOUTHEAST, SOUTH, SOUTHWEST, WEST, NORTHWEST;

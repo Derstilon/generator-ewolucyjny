@@ -1,7 +1,10 @@
-package agh.cs.genEvo;
+package agh.cs.genEvo.mapElements.animalElements;
+
+import agh.cs.genEvo.utils.MapDirection;
+import agh.cs.genEvo.observers.PopulationObserver;
+import agh.cs.genEvo.utils.Vector2d;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class GenderlessAnimal implements AnimalInterface{
     private int energyValue;
@@ -17,7 +20,7 @@ public class GenderlessAnimal implements AnimalInterface{
     private Vector2d position;
 
     //Constructors//
-    GenderlessAnimal(int value, Integer start, Integer move, Vector2d position, Integer currentAge, Genotype newGenes){
+    public GenderlessAnimal(int value, Integer start, Integer move, Vector2d position, Integer currentAge, Genotype newGenes){
         this.energyValue = value;
         this.startEnergy = start;
         this.moveEnergy = move;
@@ -27,10 +30,10 @@ public class GenderlessAnimal implements AnimalInterface{
         this.position = position;
         this.rotation = rotation.random();
     }
-    GenderlessAnimal(Integer value, Integer start, Integer move, Vector2d position, Integer currentAge){
+    public GenderlessAnimal(Integer value, Integer start, Integer move, Vector2d position, Integer currentAge){
         this(value, start, move, position, currentAge, new Genotype());
     }
-    GenderlessAnimal(AnimalInterface template, Vector2d position){
+    public GenderlessAnimal(AnimalInterface template, Vector2d position){
         this(template.getEnergy(),template.getStartEnergy(),template.getMoveEnergy(),position,template.getAgeOfBirth(),new Genotype());
     }
     //____________//

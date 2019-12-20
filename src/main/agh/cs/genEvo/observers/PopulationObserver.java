@@ -1,4 +1,7 @@
-package agh.cs.genEvo;
+package agh.cs.genEvo.observers;
+
+import agh.cs.genEvo.utils.Vector2d;
+import agh.cs.genEvo.mapElements.animalElements.AnimalInterface;
 
 public interface PopulationObserver {
     boolean childGenerated(AnimalInterface child);

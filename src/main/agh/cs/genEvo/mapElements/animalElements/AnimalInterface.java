@@ -1,4 +1,8 @@
-package agh.cs.genEvo;
+package agh.cs.genEvo.mapElements.animalElements;
+
+import agh.cs.genEvo.utils.MapDirection;
+import agh.cs.genEvo.observers.PopulationObserver;
+import agh.cs.genEvo.utils.Vector2d;
 
 public interface AnimalInterface{
     boolean procreateWith(AnimalInterface mate);

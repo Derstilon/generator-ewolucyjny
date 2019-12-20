@@ -1,6 +1,9 @@
-package agh.cs.genEvo;
+package agh.cs.genEvo.managers;
 
-import java.util.ArrayList;
+import agh.cs.genEvo.mapElements.PlantLife;
+import agh.cs.genEvo.utils.Vector2d;
+import agh.cs.genEvo.mapElements.WorldMapBiome;
+
 import java.util.Hashtable;
 
 public interface GrowthInterface {

@@ -1,4 +1,6 @@
-package agh.cs.genEvo;
+package agh.cs.genEvo.mapElements.animalElements;
+
+import agh.cs.genEvo.utils.MapDirection;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,10 +29,10 @@ public class Genotype {
         }
         return secondaryGenes;
     }
-    ArrayList<MapDirection> getSecondaryGenes(){
+    public ArrayList<MapDirection> getSecondaryGenes(){
         return new ArrayList<>(geneList.subList(8,geneList.size()));
     }
-    Genotype RecombinateWith(Genotype mateGenes){
+    public Genotype RecombinateWith(Genotype mateGenes){
         Integer cut1 = ThreadLocalRandom.current().nextInt(6, 10);
         Integer cut2 = ThreadLocalRandom.current().nextInt(6, 10);
         ArrayList<MapDirection> childSecondaryGenes = new ArrayList<>();
@@ -40,7 +42,7 @@ public class Genotype {
         Collections.sort(childSecondaryGenes);
         return new Genotype(childSecondaryGenes);
     }
-    MapDirection geneticRotation(){
+    public MapDirection geneticRotation(){
         return geneList.get(ThreadLocalRandom.current().nextInt(0, geneList.size()));
     }
 

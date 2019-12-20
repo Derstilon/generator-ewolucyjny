@@ -4,6 +4,12 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertEquals;
 
+import agh.cs.genEvo.managers.ConstGrowthManager;
+import agh.cs.genEvo.managers.ZonesManager;
+import agh.cs.genEvo.mapElements.animalElements.GenderlessAnimal;
+import agh.cs.genEvo.mapElements.PlantLife;
+import agh.cs.genEvo.mapElements.WorldMapBiome;
+import agh.cs.genEvo.utils.Vector2d;
 import org.junit.Test;
 
 public class MapZoneTest {

@@ -1,7 +1,9 @@
-package agh.cs.genEvo;
+package agh.cs.genEvo.managers;
 
-import java.util.ArrayList;
-import java.util.Hashtable;
+import agh.cs.genEvo.observers.GrowthObserver;
+import agh.cs.genEvo.utils.Vector2d;
+import agh.cs.genEvo.mapElements.WorldMapBiome;
+
 import java.util.concurrent.ThreadLocalRandom;
 
 public class ConstGrowthManager implements GrowthInterface{
@@ -9,7 +11,7 @@ public class ConstGrowthManager implements GrowthInterface{
     private ZonesManager manager;
 
     //Constructor//
-    ConstGrowthManager(GrowthObserver worldMap, ZonesManager manager){
+    public ConstGrowthManager(GrowthObserver worldMap, ZonesManager manager){
         this.observer = worldMap;
         this.manager = manager;
     }

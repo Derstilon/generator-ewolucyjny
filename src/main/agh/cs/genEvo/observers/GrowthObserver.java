@@ -1,6 +1,6 @@
-package agh.cs.genEvo;
+package agh.cs.genEvo.observers;
 
-import java.util.ArrayList;
+import agh.cs.genEvo.utils.Vector2d;
 
 public interface GrowthObserver {
     boolean positionGrowthSet(Vector2d position);

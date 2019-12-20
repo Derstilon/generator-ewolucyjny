@@ -1,13 +1,17 @@
 package agh.cs.genEvo;
 
+import agh.cs.genEvo.mapElements.*;
+import agh.cs.genEvo.mapElements.animalElements.AnimalInterface;
+import agh.cs.genEvo.mapElements.animalElements.AnimalPack;
+import agh.cs.genEvo.mapElements.animalElements.GenderlessAnimal;
+import agh.cs.genEvo.utils.MapDirection;
+import agh.cs.genEvo.utils.Vector2d;
 import org.junit.Test;
-
-import java.util.ArrayList;
 
 public class AnimalsTests {
     PlantLife plant = new PlantLife(20);
     GenderlessAnimal animal = new GenderlessAnimal(200,100,0,new Vector2d(0,0),0);
-    WorldMap map = new WorldMap(3,3,1,WorldMapBiome.WARM_OCEAN,3,plant,animal);
+    WorldMap map = new WorldMap(3,3,1, WorldMapBiome.WARM_OCEAN,3,plant,animal);
     GenderlessAnimal animal1 = new GenderlessAnimal(200,100,0,new Vector2d(0,0),0);
     GenderlessAnimal animal2 = new GenderlessAnimal(200,100,0,new Vector2d(0,2),0);
     @Test

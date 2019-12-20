@@ -1,5 +1,8 @@
-package agh.cs.genEvo;
+package agh.cs.genEvo.utils;
 
+
+import agh.cs.genEvo.WorldInterface;
+import agh.cs.genEvo.mapElements.animalElements.GenderlessAnimal;
 
 public class MapVisualizer {
 

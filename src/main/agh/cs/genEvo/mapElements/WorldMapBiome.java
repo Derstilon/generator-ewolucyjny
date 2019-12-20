@@ -1,4 +1,4 @@
-package agh.cs.genEvo;
+package agh.cs.genEvo.mapElements;
 
 public enum WorldMapBiome {
     CORAL_REEF, WARM_OCEAN, DEEP_OCEAN;

@@ -1,5 +1,8 @@
-package agh.cs.genEvo;
-import java.util.ArrayList;
+package agh.cs.genEvo.managers;
+import agh.cs.genEvo.utils.Vector2d;
+import agh.cs.genEvo.mapElements.WorldMapBiome;
+import agh.cs.genEvo.mapElements.WorldMapZone;
+
 import java.util.Hashtable;
 
 public class ZonesManager {
@@ -10,7 +13,8 @@ public class ZonesManager {
     //private ArrayList<Integer> sections = new ArrayList<Integer>();
     //private ArrayList<WorldMapBiome> biomes = new ArrayList<WorldMapBiome>();
 
-    ZonesManager(int size, WorldMapBiome defaultBiome, Vector2d origin, Vector2d bound){
+    //Constructor//
+    public ZonesManager(int size, WorldMapBiome defaultBiome, Vector2d origin, Vector2d bound){
         zoneSize = size;
         zones = new WorldMapZone[1+ (bound.x-origin.x)/zoneSize][1+ (bound.y-origin.y)/zoneSize];
         dimensions = new int[]{zones.length, zones[0].length};
@@ -31,6 +35,7 @@ public class ZonesManager {
         }
         addBiomeSection(defaultBiome, dimensions[0]*dimensions[1]);
     }
+    //***********//
 
     private void ChangeBiome(int width, int height, WorldMapBiome newBiome){
         WorldMapBiome oldBiome = zones[width][height].getBiome();
@@ -105,6 +110,7 @@ public class ZonesManager {
         int y = position.y/zoneSize;
         return zones[x][y];
     }
+
     public WorldMapZone nextZone(WorldMapZone oldZone){
         //System.out.println("SAME SAME");
         Vector2d origin = oldZone.getVector(0);
