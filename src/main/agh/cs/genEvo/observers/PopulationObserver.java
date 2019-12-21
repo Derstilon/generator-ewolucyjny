@@ -9,5 +9,5 @@ public interface PopulationObserver {
     Integer animalsGathered(Vector2d position);
     boolean animalMoved(Vector2d oldposition, AnimalInterface animal);
     void animalsFeedOnPosition(Vector2d position);
-
+    boolean animalDied(AnimalInterface animal);
 }

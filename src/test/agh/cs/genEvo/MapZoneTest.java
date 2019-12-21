@@ -51,7 +51,7 @@ public class MapZoneTest {
 
     @Test
     public void SimulateGrowthTest(){
-        ConstGrowthManager growthManager = new ConstGrowthManager(ocean, manager);
+        ConstGrowthManager growthManager = new ConstGrowthManager(manager);
         for(int i = 0; i < 3; i++){
             growthManager.simulateGrowth();
         }

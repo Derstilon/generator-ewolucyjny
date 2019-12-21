@@ -2,6 +2,9 @@ package agh.cs.genEvo.mapElements;
 
 import agh.cs.genEvo.utils.Vector2d;
 
+import java.awt.geom.Rectangle2D;
+import java.util.Vector;
+
 public class WorldMapZone {
     private final Vector2d origin;
     private final Vector2d bound;
@@ -29,6 +32,9 @@ public class WorldMapZone {
     public WorldMapBiome getBiome(){
         return biome;
     }
+    public int getSize(){
+        return size;
+    };
     boolean isFilled(){
         return density == size;
     }
@@ -43,17 +49,9 @@ public class WorldMapZone {
             return null;
         return nextPosition;
     }
-    /*Vector2d getFreePosition(int index, WorldMap map){
-        int tmp = index;
-        do{
-            Vector2d position = getVector(tmp);
-            if(map.isOccupied(position)){
-                tmp++;
-                tmp%=size*size;
-                continue;
-            }
-            return position;
-        }while (index != tmp);
-        return null;
-    }*/
+    public Rectangle2D getRectangle(){
+        Rectangle2D zoneRectangle = null;
+        return zoneRectangle;
+    }
+    public Vector2d getPosition(){return getVector(0);}
 }

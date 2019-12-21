@@ -1,10 +1,17 @@
 package agh.cs.genEvo.mapElements;
 
+import java.awt.*;
+
 public class MultistagePlantLife implements PlantInterface {
     private int energyValue;
 
     MultistagePlantLife(int value){
         energyValue = value;
+    }
+
+    @Override
+    public Color getColor() {
+        return null;
     }
 
     @Override

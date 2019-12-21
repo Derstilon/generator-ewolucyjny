@@ -4,15 +4,14 @@ import agh.cs.genEvo.observers.GrowthObserver;
 import agh.cs.genEvo.utils.Vector2d;
 import agh.cs.genEvo.mapElements.WorldMapBiome;
 
+import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class ConstGrowthManager implements GrowthInterface{
-    private GrowthObserver observer;
     private ZonesManager manager;
 
     //Constructor//
-    public ConstGrowthManager(GrowthObserver worldMap, ZonesManager manager){
-        this.observer = worldMap;
+    public ConstGrowthManager(ZonesManager manager){
         this.manager = manager;
     }
     //***********//
@@ -38,8 +37,10 @@ public class ConstGrowthManager implements GrowthInterface{
             Vector2d position = getRandomPosition(biome);
             if(position == null)
                 continue;
-            if(observer.positionGrowthSet(position))
+            if(observers.get(0).positionGrowthSet(position)) {
+                observers.get(1).positionGrowthSet(position);
                 continue;
+            }
             Vector2d nextPosition = position;
             int i = 0;
             int k = manager.getSectionSize(biome)*manager.getZoneCapacity();
@@ -48,15 +49,19 @@ public class ConstGrowthManager implements GrowthInterface{
                 if(nextPosition != null){
                 if(manager.zoneAt(nextPosition).getBiome().equals(biome)){
                     i++;
-                    if(observer.positionGrowthSet(nextPosition))
+                    if(observers.get(0).positionGrowthSet(position)) {
+                        observers.get(1).positionGrowthSet(position);
                         break;
+                    }
                 }
                 }else{
                     nextPosition = new Vector2d(0,0);
                 }
                 position  = getRandomPosition(biome);
-                if(observer.positionGrowthSet(position))
+                if(observers.get(0).positionGrowthSet(position)) {
+                    observers.get(1).positionGrowthSet(position);
                     break;
+                }
             }
         }
     }
@@ -70,8 +75,10 @@ public class ConstGrowthManager implements GrowthInterface{
             Vector2d position = getRandomPosition(biome, index);
             if(position == null)
                 continue;
-            if(observer.positionGrowthSet(position))
+            if(observers.get(0).positionGrowthSet(position)) {
+                observers.get(1).positionGrowthSet(position);
                 continue;
+            }
             Vector2d nextPosition = position;
             int i = 0;
             int k = manager.getZoneCapacity()*manager.getDimensions()[0]*manager.getDimensions()[1];
@@ -80,16 +87,14 @@ public class ConstGrowthManager implements GrowthInterface{
                 if(nextPosition != null){
                     if(manager.zoneAt(nextPosition).getBiome().equals(biome)){
                         i++;
-                        if(observer.positionGrowthSet(nextPosition))
+                        if(observers.get(0).positionGrowthSet(position)) {
+                            observers.get(1).positionGrowthSet(position);
                             break;
+                        }
                     }
                 }else{
                     nextPosition = new Vector2d(0,0);
                 }
-                /*position  = getRandomPosition(biome, index);
-                if(observer.positionGrowthSet(position))
-                    break;
-                */
             }
         }
     }

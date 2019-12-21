@@ -4,6 +4,8 @@ import agh.cs.genEvo.mapElements.animalElements.AnimalInterface;
 import agh.cs.genEvo.mapElements.animalElements.AnimalPack;
 import agh.cs.genEvo.mapElements.PlantInterface;
 import agh.cs.genEvo.mapElements.WorldMapBiome;
+import agh.cs.genEvo.observers.GrowthObserver;
+import agh.cs.genEvo.observers.PopulationObserver;
 import agh.cs.genEvo.utils.Vector2d;
 
 public interface WorldInterface {
@@ -15,8 +17,10 @@ public interface WorldInterface {
     boolean putPlant(Vector2d position);
     boolean putAnimal(AnimalInterface animal);
     void increaseAge();
+    void simulateWorld();
+    void setGrowthObserver(GrowthObserver observer);
+    void setPopulationObserver(PopulationObserver observer);
     Vector2d bendPositions(Vector2d newposition);
-    void simulateWorld(Integer k);
     Vector2d[] getBounds();
     String toString();
 }

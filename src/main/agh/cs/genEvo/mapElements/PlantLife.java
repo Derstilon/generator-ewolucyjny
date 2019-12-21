@@ -1,13 +1,19 @@
 package agh.cs.genEvo.mapElements;
 
+import java.awt.*;
+
 public class PlantLife implements PlantInterface {
     private int energyValue;
+    private static Color plantColor;
 
     public PlantLife(int value){
         energyValue = value;
+        plantColor = new Color(28, 119, 58);
     }
 
-    public PlantLife(PlantInterface template) { energyValue = template.getEnergyValue(); };
+    public PlantLife(PlantInterface template) {
+        this(template.getEnergyValue());
+    };
 
     @Override
     public boolean CanBeEaten() {
@@ -22,6 +28,11 @@ public class PlantLife implements PlantInterface {
     @Override
     public int getEnergyValue() {
         return energyValue;
+    }
+
+    @Override
+    public Color getColor() {
+        return plantColor;
     }
 
     @Override

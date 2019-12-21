@@ -1,15 +1,18 @@
 package agh.cs.genEvo.mapElements.animalElements;
 
+import agh.cs.genEvo.utils.HSLColor;
 import agh.cs.genEvo.utils.MapDirection;
 import agh.cs.genEvo.observers.PopulationObserver;
 import agh.cs.genEvo.utils.Vector2d;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class GenderlessAnimal implements AnimalInterface{
     private int energyValue;
     private static Integer startEnergy;
     private static Integer moveEnergy;
+    private static HSLColor animalColor = new HSLColor(new Color(102, 0, 44));
     private Integer ageOfBirth;
     private Integer ageOfDeath;
     private PopulationObserver observer;
@@ -85,6 +88,18 @@ public class GenderlessAnimal implements AnimalInterface{
     @Override
     public Integer getAgeOfDeath() {
         return ageOfDeath;
+    }
+
+    @Override
+    public Color getColor() {
+        float energyRatio = Math.min((this.energyValue*1.0f)/(this.startEnergy*1.0f),2f);
+        float limunance = Math.min(60f, energyRatio*30f);
+        return animalColor.adjustLuminance(animalColor.getLuminance() + limunance);
+    }
+
+    @Override
+    public int getChildrenAmount() {
+        return children.size();
     }
 
     @Override

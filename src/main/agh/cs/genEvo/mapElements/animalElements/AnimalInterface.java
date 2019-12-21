@@ -4,6 +4,8 @@ import agh.cs.genEvo.utils.MapDirection;
 import agh.cs.genEvo.observers.PopulationObserver;
 import agh.cs.genEvo.utils.Vector2d;
 
+import java.awt.*;
+
 public interface AnimalInterface{
     boolean procreateWith(AnimalInterface mate);
     boolean isAlive();
@@ -20,7 +22,9 @@ public interface AnimalInterface{
     void setPopulationObserver(PopulationObserver worldMap);
     void ChildCreated(AnimalInterface child);
 
+    int getChildrenAmount();
     int getEnergy();
+    Color getColor();
 
     Integer getAgeOfBirth();
     Integer getAgeOfDeath();

@@ -12,17 +12,17 @@ import java.util.PriorityQueue;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class PopulationManager {
-    private PopulationObserver observer;
+    public ArrayList<PopulationObserver> observers;
     private ZonesManager manager;
     public ArrayList<AnimalInterface> population;
     public Hashtable<Vector2d, AnimalPack> animalTable;
     public Hashtable<Genotype, PriorityQueue<AnimalInterface>> familyTable;
 
     //Constructors//
-    public PopulationManager(PopulationObserver worldMap, ZonesManager manager){
-        this.observer = worldMap;
+    public PopulationManager(ZonesManager manager){
         this.manager = manager;
         this.population = new ArrayList<>();
+        this.observers = new ArrayList<>();
         this.animalTable = new Hashtable<>();
         this.familyTable = new Hashtable<>();
     }
@@ -44,30 +44,15 @@ public class PopulationManager {
         int i = 0;
         while (i<count){
             Vector2d position = getRandomPosition();
-            if(observer.positionForChildGenerated(position))
+            if(observers.get(0).positionForChildGenerated(position)) {
                 i++;
+                observers.get(1).positionForChildGenerated(position);
+            }
         }
     }
 
-    public void simulateMovement(){
-        population.forEach(e->{
-            //System.out.println(e.getPosition() + " " + animalTable.get(e.getPosition()).peek().getPosition());
-            //System.out.println("SAME SAME");
-            if(!e.move())
-                System.out.println("I'm dead");
-        });
-    }
-
-    public void simulateExtinction(){
-        population.removeIf(e -> {
-            if(e.isAlive()){
-                return false;
-            }else{
-                Vector2d position = e.getPosition();
-                animalTable.get(position).remove(e);
-                return true;
-            }
-        });
+    public boolean bigDie(){
+        return population.size() == 0;
     }
 
     public void feedAnimals(int energy, AnimalPack pack){
@@ -81,7 +66,8 @@ public class PopulationManager {
             i++;
             i %= feedingCandidates.size();
         }
-        observer.animalsFeedOnPosition(pack.peek().getPosition());
+        observers.get(0).animalsFeedOnPosition(pack.peek().getPosition());
+        observers.get(1).animalsFeedOnPosition(pack.peek().getPosition());
     }
 
     public void reproduceAnimals(AnimalPack matingPack, AnimalInterface alfa){
@@ -91,6 +77,7 @@ public class PopulationManager {
             if(partner == null)
                 break;
             partners.add(partner);
+            observers.get(1).childGenerated(partner);
             if(!alfa.procreateWith(partner))
                 break;
                 //System.out.println("SAME DZIECI");
@@ -114,10 +101,31 @@ public class PopulationManager {
         findGatherings(feedingPacks, 1);
         for(AnimalPack pack : feedingPacks){
             Vector2d position = pack.peek().getPosition();
-            Integer energyToSplit = observer.animalsGathered(position);
+            Integer energyToSplit = observers.get(0).animalsGathered(position);
             if(energyToSplit>0)
                 feedAnimals(energyToSplit, pack);
         }
+    }
+    public void simulateMovement(){
+        population.forEach(e->{
+            //System.out.println(e.getPosition() + " " + animalTable.get(e.getPosition()).peek().getPosition());
+            //System.out.println("SAME SAME");
+            if(!e.move())
+                System.out.println("I'm dead");
+        });
+    }
+    public void simulateExtinction(){
+        population.removeIf(e -> {
+            if(e.isAlive()){
+                return false;
+            }else{
+                Vector2d position = e.getPosition();
+                animalTable.get(position).remove(e);
+                observers.get(0).animalDied(e);
+                observers.get(1).animalDied(e);
+                return true;
+            }
+        });
     }
     public void simulateReproduction(){
         ArrayList<AnimalPack> matingPacks = new ArrayList<>();

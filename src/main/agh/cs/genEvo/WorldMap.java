@@ -1,9 +1,6 @@
 package agh.cs.genEvo;
 
-import agh.cs.genEvo.managers.ConstGrowthManager;
-import agh.cs.genEvo.managers.GrowthInterface;
-import agh.cs.genEvo.managers.PopulationManager;
-import agh.cs.genEvo.managers.ZonesManager;
+import agh.cs.genEvo.managers.*;
 import agh.cs.genEvo.mapElements.*;
 import agh.cs.genEvo.mapElements.animalElements.AnimalInterface;
 import agh.cs.genEvo.mapElements.animalElements.AnimalPack;
@@ -23,7 +20,9 @@ public class WorldMap implements WorldInterface, GrowthObserver, PopulationObser
     private Integer worldMapAge;
     public PopulationManager populationManager;
     public GrowthInterface growthManager;
+    public PaintManager paintManager;
     private ZonesManager zonesManager;
+    public StatsManager statsManager;
 
     //Constructors//
     public WorldMap(int width, int height, int size, WorldMapBiome biome, Integer spread, PlantInterface plant, AnimalInterface animal){
@@ -36,16 +35,22 @@ public class WorldMap implements WorldInterface, GrowthObserver, PopulationObser
         defaultAnimal = animal;
         plantLifeSpread = spread;
         zonesManager = new ZonesManager(size, biome, origin, bound);
-        growthManager = new ConstGrowthManager(this, zonesManager);
-        populationManager = new PopulationManager(this, zonesManager);
+        statsManager = new StatsManager(this, defaultAnimal.getStartEnergy());
+        growthManager = new ConstGrowthManager(zonesManager);
+        setGrowthObserver(this);
+        setGrowthObserver(statsManager);
+        populationManager = new PopulationManager(zonesManager);
+        setPopulationObserver(this);
+        setPopulationObserver(statsManager);
+        paintManager = new PaintManager(zonesManager);
         worldMapAge = 0;
     }
     //************//
 
     //SIMULATION///*removeIf*/
     @Override
-    public void simulateWorld(Integer k) {
-        for(int i = 0; i < k; i++){
+    public void simulateWorld() {
+        //for(int i = 0; i < k; i++){
             this.populationManager.simulateExtinction();
             for(int j = 0; j < plantLifeSpread; j++)
                 this.growthManager.simulateGrowth();
@@ -56,10 +61,10 @@ public class WorldMap implements WorldInterface, GrowthObserver, PopulationObser
             //for (AnimalInterface animal : this.populationManager.population) {
             //    System.out.println(animal.toString() + animal.getEnergy());
             //}
-            System.out.println(this.toString());
-            System.out.println(this.populationManager.population.size());
+            //System.out.println(this.toString());
+            //System.out.println(this.populationManager.population.size());
             this.increaseAge();
-        }
+        //}
     }
     //______________//
 
@@ -167,6 +172,13 @@ public class WorldMap implements WorldInterface, GrowthObserver, PopulationObser
     }
 
     //GrowthObserver//
+
+
+    @Override
+    public void setGrowthObserver(GrowthObserver observer) {
+        this.growthManager.observers.add(observer);
+    }
+
     @Override
     public boolean positionGrowthSet(Vector2d position) {
        if(putPlant(position))
@@ -179,8 +191,18 @@ public class WorldMap implements WorldInterface, GrowthObserver, PopulationObser
     //PopulationObserver//
 
     @Override
+    public void setPopulationObserver(PopulationObserver observer) {
+        this.populationManager.observers.add(observer);
+    }
+
+    @Override
     public void animalsFeedOnPosition(Vector2d position) {
         growthManager.plantEatenOnPosition(position);
+    }
+
+    @Override
+    public boolean animalDied(AnimalInterface animal) {
+        return true;
     }
 
     @Override
@@ -228,5 +250,6 @@ public class WorldMap implements WorldInterface, GrowthObserver, PopulationObser
         }
         return false;
     }
+
     //______________//
 }

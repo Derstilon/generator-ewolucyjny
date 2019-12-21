@@ -56,14 +56,15 @@ public class ZonesManager {
     }
 
     public boolean setNewBiome(int width, int height, WorldMapBiome newBiome){
-        if((dimensions[0]-width)%2 != 0 || (dimensions[1]-height)%2 != 0 )
+
+        /*if((dimensions[0]-width)%2 != 0 || (dimensions[1]-height)%2 != 0 )
             return false;
-        else
-            for(int j = 0; j < height; j++){
-                for(int i = 0; i < width; i++){
-                    ChangeBiome((dimensions[0]-width)/2+i,(dimensions[1]-height)/2+j,newBiome);
-                }
+        else*/
+        for(int j = 0; j < height-dimensions[1]%2; j++){
+            for(int i = 0; i < width-dimensions[0]%2; i++){
+                ChangeBiome((dimensions[0]+dimensions[0]%2-width)/2+i,(dimensions[1]+dimensions[1]%2-height)/2+j,newBiome);
             }
+        }
         return true;
     }
 
