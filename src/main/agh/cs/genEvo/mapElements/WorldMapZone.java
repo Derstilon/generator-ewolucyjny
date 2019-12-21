@@ -3,7 +3,6 @@ package agh.cs.genEvo.mapElements;
 import agh.cs.genEvo.utils.Vector2d;
 
 import java.awt.geom.Rectangle2D;
-import java.util.Vector;
 
 public class WorldMapZone {
     private final Vector2d origin;

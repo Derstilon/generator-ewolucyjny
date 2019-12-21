@@ -47,24 +47,16 @@ public class WorldMap implements WorldInterface, GrowthObserver, PopulationObser
     }
     //************//
 
-    //SIMULATION///*removeIf*/
+    //SIMULATION//
     @Override
     public void simulateWorld() {
-        //for(int i = 0; i < k; i++){
-            this.populationManager.simulateExtinction();
-            for(int j = 0; j < plantLifeSpread; j++)
-                this.growthManager.simulateGrowth();
-            this.populationManager.simulateFeast();
-            this.populationManager.simulateReproduction();
-            this.populationManager.simulateMovement();
-            //System.out.println(this.populationManager.animalTable.size());
-            //for (AnimalInterface animal : this.populationManager.population) {
-            //    System.out.println(animal.toString() + animal.getEnergy());
-            //}
-            //System.out.println(this.toString());
-            //System.out.println(this.populationManager.population.size());
-            this.increaseAge();
-        //}
+        this.populationManager.simulateExtinction();
+        for(int j = 0; j < plantLifeSpread; j++)
+            this.growthManager.simulateGrowth();
+        this.populationManager.simulateFeast();
+        this.populationManager.simulateReproduction();
+        this.populationManager.simulateMovement();
+        this.increaseAge();
     }
     //______________//
 
@@ -84,11 +76,7 @@ public class WorldMap implements WorldInterface, GrowthObserver, PopulationObser
 
     public WorldMapBiome biomeAt(Vector2d position) {
         WorldMapZone zone = zonesManager.zoneAt(position);
-        //if(!zone.getBiome().equals(defaultBiome))
-            //System.out.println(zone.getBiome());
             return zone.getBiome();
-        //else
-        //return null;
     }
 
     @Override
@@ -107,7 +95,6 @@ public class WorldMap implements WorldInterface, GrowthObserver, PopulationObser
     @Override
     public AnimalPack animalsAt(Vector2d position) {
         AnimalPack pack = populationManager.animalTable.get(position);
-        //System.out.println("SAME SAME:" + position.toString() + ":" + pack);
         if(pack != null && pack.size() == 0)
             return null;
         return pack;
@@ -150,7 +137,6 @@ public class WorldMap implements WorldInterface, GrowthObserver, PopulationObser
 
     @Override
     public boolean putAnimal(AnimalInterface animal) {
-        //System.out.println("position initial: "+ position);
         Vector2d position = animal.getPosition();
         AnimalPack pack = animalsAt(position);
         if(pack==null) {
@@ -160,7 +146,6 @@ public class WorldMap implements WorldInterface, GrowthObserver, PopulationObser
         }else {
             pack.add(animal);
         }
-        //System.out.println(pack.size() + "___" + populationManager.population.size());
         return true;
     }
 
@@ -235,13 +220,10 @@ public class WorldMap implements WorldInterface, GrowthObserver, PopulationObser
     @Override
     public boolean animalMoved(Vector2d oldposition, AnimalInterface animal) {
         AnimalPack pack = animalsAt(oldposition);
-        //System.out.println(pack.size());
         Vector2d position = bendPositions(animal.getPosition());
-        //System.out.println(oldposition.toString()+" "+position.toString()+" "+animal.getPosition().toString());
         if(pack != null) {
             if (pack.contains(animal)) {
                 pack.remove(animal);
-                //System.out.println(pack.size());
                 animal.setPosition(position);
                 if (putAnimal(animal)){
                     return true;
@@ -250,6 +232,5 @@ public class WorldMap implements WorldInterface, GrowthObserver, PopulationObser
         }
         return false;
     }
-
     //______________//
 }

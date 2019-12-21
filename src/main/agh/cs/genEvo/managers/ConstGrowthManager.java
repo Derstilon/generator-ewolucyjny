@@ -17,15 +17,12 @@ public class ConstGrowthManager implements GrowthInterface{
     //***********//
 
     public Vector2d getRandomPosition(WorldMapBiome inBiome){
-        //System.out.println("SAME SAME");
         int sectionSize = manager.getSectionSize(inBiome);
-        //System.out.println(sectionSize);
         if(sectionSize == 0)
             return null;
         int zoneIndex = ThreadLocalRandom.current().nextInt(0, sectionSize);
         int positionIndex = ThreadLocalRandom.current().nextInt(0, manager.getZoneCapacity());
         Vector2d position = manager.getVector(zoneIndex, positionIndex, inBiome);
-        //System.out.println(zoneIndex +" " + positionIndex + " " +position.toString() + " " + sectionSize);
         return position;
     }
 
@@ -70,7 +67,6 @@ public class ConstGrowthManager implements GrowthInterface{
     //ControlledRandomGenerators//
     @Override
     public void simulateGrowth(int index) {
-        //System.out.println("SAME SAME");
         for (WorldMapBiome biome : WorldMapBiome.values()){
             Vector2d position = getRandomPosition(biome, index);
             if(position == null)
@@ -104,15 +100,12 @@ public class ConstGrowthManager implements GrowthInterface{
     }
     @Override
     public Vector2d getRandomPosition(WorldMapBiome inBiome, int index){
-        //System.out.println("SAME SAME");
         int sectionSize = manager.getSectionSize(inBiome);
-        //System.out.println(sectionSize);
         if(sectionSize == 0)
             return null;
         int zoneIndex = index%sectionSize;
         int positionIndex = index%manager.getZoneCapacity();
         Vector2d position = manager.getVector(zoneIndex, positionIndex, inBiome);
-        //System.out.println(zoneIndex +" " + positionIndex + " " +position.toString() + " " + sectionSize);
         return position;
     }
     //**************************//

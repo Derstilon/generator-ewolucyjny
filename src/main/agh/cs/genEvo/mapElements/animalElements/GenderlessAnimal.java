@@ -180,7 +180,7 @@ public class GenderlessAnimal implements AnimalInterface{
     public boolean move(MapDirection direction) {
         if(isAlive()) {
             consumeEnergy(moveEnergy);
-            rotation = direction;//rotation.rotate(genes.geneticRotation());
+            rotation = direction;
             Vector2d oldPosition = new Vector2d(this.position);
             this.position = new Vector2d(this.position.add(rotation.toUnitVector()));
             return (observer.animalMoved(oldPosition, this));

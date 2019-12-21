@@ -29,14 +29,10 @@ public class PopulationManager {
     //************//
 
     public Vector2d getRandomPosition(){
-        //System.out.println("SAME SAME");
         int[] dimensions = manager.getDimensions();
-        //System.out.println(dimensions[0] + ":" + dimensions[1]);
         int zoneIndex = ThreadLocalRandom.current().nextInt(0, dimensions[0]*dimensions[1]);
         int positionIndex = ThreadLocalRandom.current().nextInt(0, manager.getZoneCapacity());
-        //System.out.println(zoneIndex + ":" + positionIndex);
         Vector2d position = manager.getVector(zoneIndex, positionIndex);
-        //System.out.println(zoneIndex +" " + positionIndex + " " +position.toString() + " " + sectionSize);
         return position;
     }
 
@@ -56,7 +52,6 @@ public class PopulationManager {
     }
 
     public void feedAnimals(int energy, AnimalPack pack){
-        //AnimalPack pack = animalTable.get(position);
         ArrayList<AnimalInterface> feedingCandidates = pack.peekDominant();
         Integer leftenergy = energy;
         int i = 0;
@@ -80,7 +75,6 @@ public class PopulationManager {
             observers.get(1).childGenerated(partner);
             if(!alfa.procreateWith(partner))
                 break;
-                //System.out.println("SAME DZIECI");
         }
         matingPack = animalTable.get(alfa.getPosition());
         matingPack.addAll(partners);
@@ -108,8 +102,6 @@ public class PopulationManager {
     }
     public void simulateMovement(){
         population.forEach(e->{
-            //System.out.println(e.getPosition() + " " + animalTable.get(e.getPosition()).peek().getPosition());
-            //System.out.println("SAME SAME");
             if(!e.move())
                 System.out.println("I'm dead");
         });

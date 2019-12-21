@@ -19,6 +19,7 @@ public class StatsManager implements GrowthObserver, PopulationObserver {
     private Float sumEnergy=0f;
     private Float sumLifespan=0f;
     private Float countChildren=0f;
+
     public StatsManager(WorldMap map, Integer animalStartEnergy){
         this.map = map;
         this.startEnergy = animalStartEnergy;
@@ -39,10 +40,12 @@ public class StatsManager implements GrowthObserver, PopulationObserver {
 
         observer.statsForAnimalsUpdated(stats, observerIndex);
     }
+
     public void setStatsObserver(StatsObserver observer, Integer index){
         this.observer = observer;
         this.observerIndex = index;
     }
+
     @Override
     public boolean positionGrowthSet(Vector2d position) {
         plantNumber++;

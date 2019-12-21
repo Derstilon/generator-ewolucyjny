@@ -10,8 +10,6 @@ public class ZonesManager {
     private int zoneSize;
     private int[] dimensions;
     private Hashtable<WorldMapBiome, Integer> biomeSections = new Hashtable<>();
-    //private ArrayList<Integer> sections = new ArrayList<Integer>();
-    //private ArrayList<WorldMapBiome> biomes = new ArrayList<WorldMapBiome>();
 
     //Constructor//
     public ZonesManager(int size, WorldMapBiome defaultBiome, Vector2d origin, Vector2d bound){
@@ -57,9 +55,6 @@ public class ZonesManager {
 
     public boolean setNewBiome(int width, int height, WorldMapBiome newBiome){
 
-        /*if((dimensions[0]-width)%2 != 0 || (dimensions[1]-height)%2 != 0 )
-            return false;
-        else*/
         for(int j = 0; j < height-dimensions[1]%2; j++){
             for(int i = 0; i < width-dimensions[0]%2; i++){
                 ChangeBiome((dimensions[0]+dimensions[0]%2-width)/2+i,(dimensions[1]+dimensions[1]%2-height)/2+j,newBiome);
@@ -77,9 +72,7 @@ public class ZonesManager {
     }
 
     public Integer getSectionSize(WorldMapBiome thisBiome){
-        //System.out.println("SAME SAME");
         Integer sectionSize = biomeSections.get(thisBiome);
-        //System.out.println(sectionSize);
         if(sectionSize != null)
             return sectionSize;
         return 0;
@@ -90,9 +83,7 @@ public class ZonesManager {
     }
 
     public Vector2d getVector(int zoneIndex, int positionIndex, WorldMapBiome thisBiome){
-        //System.out.println("SAME SAME");
         int tmpIndex = zoneIndex;
-        //System.out.println("zoneIndex: " + zoneIndex);
         int i = 0;
         do{
             WorldMapZone tmpZone = zones[i%dimensions[0]][i/dimensions[0]];
@@ -100,9 +91,7 @@ public class ZonesManager {
                 tmpIndex++;
             }
             i++;
-            //System.out.println("[i,tmpIndex]: [" + i + "," + tmpIndex + "]");
         }while(i <= tmpIndex && i < dimensions[0]*dimensions[1]);
-        //System.out.println("zones[" + tmpIndex%dimensions[0] + "]["+ tmpIndex/dimensions[0] +"]");
         return zones[tmpIndex%dimensions[0]][tmpIndex/dimensions[0]].getVector(positionIndex);
     }
 
@@ -113,7 +102,6 @@ public class ZonesManager {
     }
 
     public WorldMapZone nextZone(WorldMapZone oldZone){
-        //System.out.println("SAME SAME");
         Vector2d origin = oldZone.getVector(0);
         if(dimensions[0]-1>origin.x/zoneSize)
             return zoneAt(origin.add(new Vector2d(zoneSize,0)));
@@ -136,4 +124,5 @@ public class ZonesManager {
         else
             return zone.getVector(0);
     }
+
 }

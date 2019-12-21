@@ -26,7 +26,6 @@ public enum MapDirection {
     }
 
     public String toString(){
-        //System.out.println(this.ordinal());
         return arrows[this.ordinal()];
     }
 }

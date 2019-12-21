@@ -29,14 +29,12 @@ public class AnimalPack implements AnimalGroupInterface{
     @Override
     public void add(AnimalInterface element) {
         animalGroup.add(element);
-        //System.out.println("ADDED"+this.size());
     }
 
     @Override
     public void addAll(Collection<AnimalInterface> elements) {
         if(elements.size()>0)
             animalGroup.addAll(elements);
-        //System.out.println("ADDED"+this.size());
     }
 
     @Override
@@ -63,7 +61,6 @@ public class AnimalPack implements AnimalGroupInterface{
         if(animalGroup.size()>0) {
             do {
                 if (!animalGroup.peek().isHealthy()) {
-                    //peeked.add(animalGroup.poll());
                     break;
                 }
                 if (!animalGroup.peek().canBeSecondPartner()) {
@@ -75,7 +72,6 @@ public class AnimalPack implements AnimalGroupInterface{
             } while (animalGroup.size() > 0);
             this.addAll(peeked);
         }
-        //System.out.println("POOLED"+this.size());
         return partner;
     }
 
@@ -98,7 +94,6 @@ public class AnimalPack implements AnimalGroupInterface{
             } while (animalGroup.size() > 0);
             this.addAll(peeked);
         }
-        //System.out.println("POOLED"+this.size());
         return alfa;
     }
 

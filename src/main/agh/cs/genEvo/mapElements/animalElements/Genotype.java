@@ -14,13 +14,15 @@ public class Genotype {
             addAll(Arrays.asList(MapDirection.values()));
         }
     };
+    //Constructors//
     Genotype(ArrayList<MapDirection> secondaryGenes){
         geneList.addAll(secondaryGenes);
     }
-
     Genotype(){
         geneList.addAll(randomizeSecondaryGenes());
     }
+    //************//
+
     private ArrayList<MapDirection> randomizeSecondaryGenes(){
         ArrayList<MapDirection> secondaryGenes = new ArrayList<>();
         for(int i = geneList.size(); i < 32; i++){
@@ -29,9 +31,11 @@ public class Genotype {
         }
         return secondaryGenes;
     }
+
     public ArrayList<MapDirection> getSecondaryGenes(){
         return new ArrayList<>(geneList.subList(8,geneList.size()));
     }
+
     public Genotype RecombinateWith(Genotype mateGenes){
         Integer cut1 = ThreadLocalRandom.current().nextInt(6, 10);
         Integer cut2 = ThreadLocalRandom.current().nextInt(6, 10);
@@ -42,6 +46,7 @@ public class Genotype {
         Collections.sort(childSecondaryGenes);
         return new Genotype(childSecondaryGenes);
     }
+
     public MapDirection geneticRotation(){
         return geneList.get(ThreadLocalRandom.current().nextInt(0, geneList.size()));
     }
@@ -59,4 +64,3 @@ public class Genotype {
         return Objects.hash(geneList);
     }
 }
-//al.addAll(arraylist1);
