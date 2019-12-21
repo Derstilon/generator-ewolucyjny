@@ -1,12 +1,7 @@
 package agh.cs.genEvo;
 
-import agh.cs.genEvo.mapElements.animalElements.AnimalInterface;
-import agh.cs.genEvo.mapElements.animalElements.GenderlessAnimal;
-import agh.cs.genEvo.mapElements.PlantLife;
-import agh.cs.genEvo.mapElements.WorldMapBiome;
-import agh.cs.genEvo.src.ConfigurationPanel;
-import agh.cs.genEvo.src.MainWindow;
-import agh.cs.genEvo.utils.Vector2d;
+import agh.cs.genEvo.JFrames.ConfigurationPanel;
+import agh.cs.genEvo.JFrames.MainWindow;
 
 public class Simulation {
     static MainWindow main;
@@ -16,4 +11,3 @@ public class Simulation {
         conf = new ConfigurationPanel("Generator Ewolucyjny", main);
     }
 }
-/*  🌱█  */

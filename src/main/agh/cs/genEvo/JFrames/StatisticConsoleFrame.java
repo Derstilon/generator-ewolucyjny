@@ -1,4 +1,4 @@
-package agh.cs.genEvo.src;
+package agh.cs.genEvo.JFrames;
 import agh.cs.genEvo.observers.StatsObserver;
 import agh.cs.genEvo.utils.SpringUtilities;
 
@@ -20,8 +20,8 @@ public class StatisticConsoleFrame extends JFrame implements StatsObserver {
                 buttons.getComponentCount(),
                 6, 6, 6, 6);
         this.add(buttons);
-        pack();
         setRawStatistics(0);
+        this.setMinimumSize(new Dimension(350, 300));
     }
 
     @Override

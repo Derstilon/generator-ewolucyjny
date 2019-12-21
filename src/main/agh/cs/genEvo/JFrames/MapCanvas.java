@@ -1,4 +1,4 @@
-package agh.cs.genEvo.src;
+package agh.cs.genEvo.JFrames;
 
 import agh.cs.genEvo.WorldMap;
 import agh.cs.genEvo.mapElements.PlantInterface;
@@ -33,7 +33,6 @@ public class MapCanvas extends JPanel {
                         map.simulateWorld();
                         this.repaint();
                         map.statsManager.updateStats();
-                        //map.getAnimalStatistics();
                     } else {
                         i--;
                     }
